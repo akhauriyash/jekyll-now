@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <center>The curious case of curious AI</center>
+title: The curious case of curious AI
 ---
 <center>
 <h2 style="text-align:center;">A take on Curiosity-driven Exploration by Self-supervised Prediction.</h2>
