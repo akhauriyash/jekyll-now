@@ -17,7 +17,8 @@ The code. (Image uploaded as i do not expect anyone to copy paste this.)
 <p style="text-align: center;">Another reason for this choice is that the derivative of the Sigmoid function:</p>
 
 
-<img src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv.png" alt="sigmoid deriv.png" width="198" height="61" /> eqn(1)
+<img src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv.png" alt="sigmoid deriv.png" width="198" height="61" /> 
+eqn(1)
 <p style="text-align: center;">This means that one can easily create the following function:</p>
 <p style="text-align: center;"><img class="alignnone  wp-image-48" src="https://quirkyai.files.wordpress.com/2017/05/sigderivfunc.png" alt="sigderivfunc.png" width="227" height="55" /></p>
 <p style="text-align: center;">This would return the derivative, as proven by eqn (1)</p>
@@ -26,7 +27,8 @@ The code. (Image uploaded as i do not expect anyone to copy paste this.)
 <p style="text-align: center;"><strong>The derivative is useful because: </strong>whenever the neural network makes a 'prediction', it is important that the error in is adjusted correctly.</p>
 
 
-<img class="alignnone  wp-image-62" src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv-explanation.png" alt="sigmoid deriv explanation.png" width="467" height="352" /> <strong>Weighted errors</strong>
+<img class="alignnone  wp-image-62" src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv-explanation.png" alt="sigmoid deriv explanation.png" width="467" height="352" /> 
+<strong>Weighted errors</strong>
 <p style="text-align: center;">The concept of <strong>weighted error </strong>comes into play here. Penalizing what the neural network is less confident about heavily, and penalizing its most confident outputs the least. Which can be articulated in the following statement/code best:</p>
 <p style="text-align: center;">Error = y - prediction
 prediction_delta = Error*sigmoid_to_deriv(prediction)</p>
