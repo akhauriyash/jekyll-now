@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CODING YOUR FIRST NEURAL NETWORK FROM SCRATCH
+title: Coding your first neural network from scratch
 ---
 <center>
 <p style="text-align: center;">The key in my opinion, to coding your first neural network is to sidestep the landmine that is using Tensorflow, and using nothing but Python, and numpy.</p>
