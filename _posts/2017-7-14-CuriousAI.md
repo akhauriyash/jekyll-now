@@ -61,7 +61,7 @@ We have another model that takes as inputs $latex a_{t}$ and $latex \Phi(s_{t})$
 
 <img class=" size-full wp-image-221 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_30_43-icml17.png" alt="2017-05-30 00_30_43-icml17.png" />
 
-Here [latex]\hat\Phi(s_{t+1})[/latex] is the predicted estimate of     [latex]\Phi(s_{t+1})[/latex]      and the neural network parameters [latex]\theta _{F}[/latex] are optimized by optimizing the following loss function:
+Here [latex]\hat\Phi(s_{t+1})[/latex] is the predicted estimate of [](raw: [latex]\Phi(s_{t+1})[/latex])  and the neural network parameters [latex]\theta _{F}[/latex] are optimized by optimizing the following loss function:
 <img class=" size-full wp-image-222 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_33_00-icml17.png" alt="2017-05-30 00_33_00-icml17.png" />
 
 The intrinsic reward is computed as the product of $latex \eta$ and $latex L_{F}$. $latex \eta$ is a scaling factor. We jointly optimize the <strong>forward and inverse </strong><strong>dynamics loss</strong>.
