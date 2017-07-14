@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Resume
-permalink: /about/
+permalink: /resume/
 ---
 
 <meta http-equiv="refresh" content="0; url=akhauriyash.github.io/Resume.pdf/" />
