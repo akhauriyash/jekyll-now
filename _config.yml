@@ -6,7 +6,7 @@
 name: Yash Akhauri
 
 # Short bio or description (displayed in the header)
-description: AI enthusiast
+description: AI enthusiast || Intel® Software Student Ambassador for Artificial Intelligence
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://quirkyai.files.wordpress.com/2017/05/2017-05-29-15_28_49-yash-akhauri-akhauriyash-e280a2-instagram-photos-and-videos.png?w=268&h=300
@@ -20,7 +20,7 @@ avatar: https://quirkyai.files.wordpress.com/2017/05/2017-05-29-15_28_49-yash-ak
 footer-links:
   dribbble:
   email: akhauri.yash@gmail.com
-  facebook:
+  facebook: https://www.facebook.com/akhauri.yash/
   flickr:
   github: akhauriyash
   instagram:
