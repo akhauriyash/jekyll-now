@@ -2,6 +2,7 @@
 layout: post
 title: CODING YOUR FIRST NEURAL NETWORK FROM SCRATCH
 ---
+<center>
 <p style="text-align: center;">The key in my opinion, to coding your first neural network is to sidestep the landmine that is using Tensorflow, and using nothing but Python, and numpy.</p>
 <p style="text-align: center;">The code given below 'learns' that the output 'y' will be 0 if the input is an odd number in binary representation, and 1 if the input is an even number.</p>
 
@@ -16,7 +17,7 @@ The code. (Image uploaded as i do not expect anyone to copy paste this.)
 <p style="text-align: center;">Another reason for this choice is that the derivative of the Sigmoid function:</p>
 
 
-src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv.png" alt="sigmoid deriv.png" width="198" height="61" /> eqn(1)
+<img src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv.png" alt="sigmoid deriv.png" width="198" height="61" /> eqn(1)
 <p style="text-align: center;">This means that one can easily create the following function:</p>
 <p style="text-align: center;"><img class="alignnone  wp-image-48" src="https://quirkyai.files.wordpress.com/2017/05/sigderivfunc.png" alt="sigderivfunc.png" width="227" height="55" /></p>
 <p style="text-align: center;">This would return the derivative, as proven by eqn (1)</p>
