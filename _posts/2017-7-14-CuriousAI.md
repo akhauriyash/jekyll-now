@@ -1,72 +1,107 @@
 ---
 layout: post
-title: <center>CODING YOUR FIRST NEURAL NETWORK FROM SCRATCH</center>
+title: <center>The curious case of curious AI</center>
 ---
 <center>
-<p style="text-align: center;">The key in my opinion, to coding your first neural network is to sidestep the landmine that is using Tensorflow, and using nothing but Python, and numpy.</p>
-<p style="text-align: center;">The code given below 'learns' that the output 'y' will be 0 if the input is an odd number in binary representation, and 1 if the input is an even number.</p>
-
-
-The code. (Image uploaded as i do not expect anyone to copy paste this.)
+<h2 style="text-align:center;">A take on Curiosity-driven Exploration by Self-supervised Prediction.</h2>
 <blockquote>
-<p style="text-align: center;">We begin the journey by understanding the sigmoid function:</p>
-<p style="text-align: center;"><img class="" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/34ef0bf30a2cd7e90e87221cfc796dcf4f265d56" alt="{\displaystyle S(x)={\frac {1}{1+e^{-x}}}.}" width="101" height="82" /></p>
+<p style="text-align:center;">This article attempts to give the reader (you) a brief overview of the excellent research paper on 'curious AI' written by <span class="word">Deepak</span> <span class="word">Pathak, </span><span class="word">Pulkit</span> <span class="word">Agrawal, </span><span class="word">Alexei</span> <span class="word">A.</span> <span class="word">Efros, </span><span class="word">Trevor</span> <span class="word">Darrell.</span></p>
 </blockquote>
-<p style="text-align: center;"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/320px-Logistic-curve.svg.png" /></p>
-<p style="text-align: center;">This function is very widely used in neural networks. The purpose is to bring non-linearity into the model.</p>
-<p style="text-align: center;">Another reason for this choice is that the derivative of the Sigmoid function:</p>
-
-
-<img src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv.png" alt="sigmoid deriv.png" width="198" height="61" /> 
-eqn(1)
-<p style="text-align: center;">This means that one can easily create the following function:</p>
-<p style="text-align: center;"><img class="alignnone  wp-image-48" src="https://quirkyai.files.wordpress.com/2017/05/sigderivfunc.png" alt="sigderivfunc.png" width="227" height="55" /></p>
-<p style="text-align: center;">This would return the derivative, as proven by eqn (1)</p>
-
-<h2 style="text-align: center;">Weighing your errors</h2>
-<p style="text-align: center;"><strong>The derivative is useful because: </strong>whenever the neural network makes a 'prediction', it is important that the error in is adjusted correctly.</p>
-
-
-<img class="alignnone  wp-image-62" src="https://quirkyai.files.wordpress.com/2017/05/sigmoid-deriv-explanation.png" alt="sigmoid deriv explanation.png" width="467" height="352" /> 
-<strong>Weighted errors</strong>
-<p style="text-align: center;">The concept of <strong>weighted error </strong>comes into play here. Penalizing what the neural network is less confident about heavily, and penalizing its most confident outputs the least. Which can be articulated in the following statement/code best:</p>
-<p style="text-align: center;">Error = y - prediction
-prediction_delta = Error*sigmoid_to_deriv(prediction)</p>
-<p style="text-align: center;">The red boxes signify what might qualify as high confidence predictions. This implies that the multiplying the error with the derivative at that prediction leads to a small prediction_delta. Which implies lesser weightage to the error.</p>
-
-<h2 style="text-align: center;">Synapses</h2>
-<p style="text-align: center;">It is extremely important that anyone attempting to code a neural network assimilates the concept of synapses.
-Our first priority, after obviously the inputs is creating synapses. Synapses can be imagined to be <strong>weight matrices </strong>for the neural network.  For purposes pertaining to the task ahead of us, we shall load random numbers into the matrix, which will act as weights initially, and we will update it with every iteration.</p>
-<p style="text-align: center;">I hope everyone is familiar with matrix multiplication here. If not, I'll give you the very basic, and a recommendation to look up some Khan Academy videos.</p>
-<p style="text-align: center;"><img class="" src="https://quirkyai.files.wordpress.com/2017/05/3efde-matrix_multi.png" width="333" height="121" /></p>
-<p style="text-align: center;">If we are to create a neural network with many hidden layers, this becomes essential.</p>
-<p style="text-align: center;">After inspecting the code on top, as well as the picture below, you will have a perfect understanding of the process underlying neural networks.</p>
+<p style="text-align:center;">In real life, rewards extrinsic to an agent is extremely sparse. Curiosity acts as in 'intrinsic reward signal'.
+The way curiosity has been expressed in the paper is the error in agent's ability to predict the consequence of its own actions in a visual feature space learned by a 'self-supervised inverse dynamics model'.</p>
+<p style="text-align:center;">The point is to encourage the agent to reach 'novel' states and help it get better at reducing the error in predicting consequence of its actions.
+Measuring novelty requires a statistical model. So does measuring prediction error. This is difficult due to stochasticity in the environment.</p>
 
 <blockquote>
-<p style="text-align: center;"><strong>Make sure you spend as much time as you need understanding this. Refer to the code simultaneously as well.</strong></p>
+<h3 style="text-align:center;">A bit on A3C</h3>
+<p style="text-align:left;">You will be encountering A3C a lot in this article. Put simply, it made DQN obsolete.
+Unlike DQN, where a single agent represented by a single neural network
+interacts with a single environment, A3C utilizes multiple incarnations
+of the above in order to learn more efficiently. In A3C there is a global
+network, and multiple worker agents which each have their own set of
+network parameters.
+<a href="https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-8-asynchronous-actor-critic-agents-a3c-c88f72a5e9f2" target="_blank" rel="noopener noreferrer">More on this</a></p>
 </blockquote>
-<p style="text-align: center;"><img class="alignnone size-full wp-image-134" src="https://quirkyai.files.wordpress.com/2017/05/explanationtry2.jpg" alt="explanationtry2" width="1000" height="750" /></p>
+<p style="text-align:left;">The key in the paper was to only predict the consequences of its own actions. A transformation of the sensory input to a feature space was performed. The feature space was learned using self-supervision. This was done by predicting the action that would lead to a transformation from the current state to the next state. (A proxy<strong> inverse dynamics task</strong> to be fancy).
+A <strong>forward dynamics model</strong> predicting the feature representation of the next state, given current state and the action was also used.</p>
+<p style="text-align:left;">In the paper, comparison between an A3C agent with and without the curiosity signal on a 3D navigation task is performed. (In Viz-Doom)</p>
+
+<h2 style="text-align:center;">The 'Design'</h2>
+<img class="alignnone size-full wp-image-188" src="https://quirkyai.files.wordpress.com/2017/05/curiosity-system.png" alt="Curiosity system.png" width="1128" height="473" />
+
+There were two subsystems:
+<ul>
+	<li>A reward generator: Outputs a curiosity-driven intrinsic reward signal, and  an extrinsic reward system.</li>
+	<li>A policy that outputs a sequence of actions to maximize that reward signal.</li>
+</ul>
+Intrinsic curiosity reward at time t: $latex r_{t}^{i}$, extrinsic reward: $latex r_{t}^{e}$.
+Policy sub-system to maximize r = $latex r_{t}^{i}$ + $latex r_{t}^{e}$.
+
+The policy $latex \pi (s_{t};\Theta_{p})$ is represented by a DNN with parameters $latex \Theta_{p}$. At state $latex s_{t}$, it executes action $latex a_{t} ~ \pi (s_{t};\Theta_{p})$. $latex \Theta_{p}$ is optimized to maximize the expected sum of rewards.
+
+<strong>
+$latex max_{\theta_{p}} \mathbb{E}_{\pi (s_{t};\Theta_{p})}\left [ \sum _{t}r_{t}\right ]$
+</strong>
+
+The problem with giving prediction error as a curiosity reward is that the agent is cannot distinguish between features that cannot be modeled and ones that can. Thus the agent can fall into an 'artificial curiosity trap' and stall. A good feature space should not model things that are out of agent's control and does not affect it.
+
+Such a feature space can be learned by training a deep neural network with two sub modules:
+<ul>
+	<li>Raw state $latex s_{t}$ to feature vector $latex \Phi(s_{t})$ encoder</li>
+	<li>Takes features encoding $latex \Phi(s_{t})$, $latex \Phi(s_{t+1})$ and predicts action $latex a_{t}$ taken by agent to move from $latex s_{t}$ to $latex s_{t+1}$</li>
+</ul>
+<h3>Inverse dynamics model</h3>
+This prediction of action gives a learning function g:
+[latex]\hat{a}_{t} = g\left ( s_{t}, s_{t+1}; \theta_l \right )[/latex]
+Here $latex \hat{a}_{t}$ is the predicted estimate of the action, and the neural network parameters $latex \theta_{l}$ are trained to optimize:
+[latex]min_{\theta_{I}}L_{I}\left ( \hat{a}_{t}, a_{t} \right )[/latex]
+What you see above is the loss function. The learned function g is also known as the<strong> inverse dynamics model. </strong>
+<h3>Forward dynamics model</h3>
+We have another model that takes as inputs $latex a_{t}$ and $latex \Phi(s_{t})$ and predicts feature encoding of the state at time step t+1.
+
+<img class=" size-full wp-image-221 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_30_43-icml17.png" alt="2017-05-30 00_30_43-icml17.png" width="357" height="86" />
+
+Here [latex]\hat\Phi(s_{t+1})[/latex] is the predicted estimate of [latex]\Phi(s_{t+1})[/latex] and the neural network parameters [latex]\theta _{F}[/latex] are optimized by optimizing the following loss function:
+<img class=" size-full wp-image-222 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_33_00-icml17.png" alt="2017-05-30 00_33_00-icml17.png" width="354" height="48" />
+
+The intrinsic reward is computed as the product of $latex \eta$ and $latex L_{F}$. $latex \eta$ is a scaling factor. We jointly optimize the <strong>forward and inverse </strong><strong>dynamics loss</strong>.
+
+<hr />
+
 
 
 <hr />
 
-<h2 style="text-align: center;">Backpropogation</h2>
-<img class="aligncenter size-full wp-image-133" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-29-15_57_55-spyder-python-3.png" alt="2017-05-29 15_57_55-Spyder (Python 3.png" width="336" height="137" />
+<h2 style="text-align:center;">The Architecture</h2>
+The input RGB inputs are converted to grey-scale 42 by 42 size images. To model <strong>temporal dependencies, </strong>each state representation is concatenated with three previous frames.
 
-Looking at line 22 might make the concept of error obvious. However, can you guess what is happening on line 24?
-What we do here is simply establish a metric of how each synapse in the network contributed to the overall error in each iteration.
-<p style="text-align: center;">For a concrete understanding of this concept, i'd suggest an exceptional source: <a href="http://cs231n.github.io/optimization-2/" target="_blank" rel="noopener noreferrer">Optimization: CS231n</a></p>
+Asynchronous training protocol: 20 workers using SGD.
+<h3 style="text-align:center;">A3C architecture:</h3>
+Input state => four convolutional layers with 32 filters each, kernel size 3x3; stride 2; padding 1. ELU used after each convolutional layer. Output of last convolution fed into a LSTM with 256 units. ==> 2 seperate fully connected layers to predict the value function and action from LSTM feature representation.
+<h3 style="text-align:center;">ICM architecture:</h3>
+<strong>Inverse model architecture: </strong>Maps input state to feature vector using 4 conv. layers, with 32 filters each, kernel size 3x3; stride 2; padding 1. ELU is used. Dimensionality of feature vector: 288. $latex \Phi(s_{t})$ & $latex \Phi(s_{t+1})$ are concatenated to a single feature vector and passed to a fully connected layer of 256 units with fully connected layer with 4 units to predict one of the 4 possible actions.
 
-<h2 style="text-align: center;">Alphas &
-Gradient Descent</h2>
-Say I'm jumping around in a bowl shaped like a parabola. If the length i can jump is too long, and my purpose is to get to the lowest point, I might never get there, as i may keep overshooting the bottom. But say the bowl was not parabola shaped, but irregular with many local minimas, and say I jump extremely small distances, then the probability that I will get caught in a local minima for several iterations is extremely high.
+<strong>Forward model architecture: </strong>Feature vector concatenated with action $latex a_{t}$, passing it to a sequence of two fully connected layers with 256 & 288 units respectively.
+<h2>Results:</h2>
+<img class="alignnone size-full wp-image-230" src="https://quirkyai.files.wordpress.com/2017/05/result-1.png" alt="result 1.png" width="1223" height="364" />Rewards provided were made more sparse, which cause performance to deteriorate.
+ICM (pixels) + A3C consistently performed worse than ICM + A3C because any change in texture style could render the method ineffective.
 
-Source: http://sebastianraschka.com/Articles/2015_singlelayer_neurons.html
+<strong>Mario with no rewards:</strong>
 
-This impacts our ability to train in a massive manner.
+After training the algorithm on level 1, three methods of evaluating its robustness could be considered: Playing "as is" on the next levels, Fine tune the policies a bit,  Fine tune with extrinsic reward.
 
-So, an alpha parameter is introduced, which reduces the size of each 'leap'. This is crucial to training speed, but also needs to be selected carefully.
+<img class=" size-full wp-image-232 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/result-2.png" alt="result 2.png" width="1111" height="245" />
 
-This is just one of the several optimization techniques, among SGD, AdaGrad, ADAM, to name a few.
+Running "as is" on level 2 after level 1 proved to be unsuccessful. This was because level 2 is visually very distinct from level 1 in terms  of lighting. Thus after a little bit of fine tuning,  Very promising results were seen.
+
+Training the algorithm from scratch on level 2 found less effective results. Could be due to increased difficulty of level 2.
+
+Level 3 with fine tuning or from scratch did not see very good results. This is because level 3 is very hard - The agent hits a 'curiosity blockade', as it stops receiving curiosity rewards, thus the policy stops working. This has been referred to as analogous to 'boredom' in the paper. Halting exploration upon no reward from effort.
+
+<hr />
+
+NOTE: This entire article has been published for people who wanted a slightly concise version of the paper, also because i really enjoyed the paper and would like people to see it one way or another. None of the work above is done by me. Hope you enjoyed it nevertheless!
+
+<hr />
 
  
