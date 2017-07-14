@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <center>CODING YOUR FIRST NEURAL NETWORK FROM SCRATCH</center>
+title: CODING YOUR FIRST NEURAL NETWORK FROM SCRATCH
 ---
 <center>
 <p style="text-align: center;">The key in my opinion, to coding your first neural network is to sidestep the landmine that is using Tensorflow, and using nothing but Python, and numpy.</p>
