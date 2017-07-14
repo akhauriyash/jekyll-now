@@ -27,7 +27,7 @@ A <strong>forward dynamics model</strong> predicting the feature representation 
 <p style="text-align:left;">In the paper, comparison between an A3C agent with and without the curiosity signal on a 3D navigation task is performed. (In Viz-Doom)</p>
 
 <h2 style="text-align:center;">The 'Design'</h2>
-<img class="alignnone size-full wp-image-188" src="https://quirkyai.files.wordpress.com/2017/05/curiosity-system.png" alt="Curiosity system.png" width="1128" height="473" />
+<img class="alignnone size-full wp-image-188" src="https://quirkyai.files.wordpress.com/2017/05/curiosity-system.png" alt="Curiosity system.png" />
 
 There were two subsystems:
 <ul>
@@ -59,10 +59,10 @@ What you see above is the loss function. The learned function g is also known as
 <h3>Forward dynamics model</h3>
 We have another model that takes as inputs $latex a_{t}$ and $latex \Phi(s_{t})$ and predicts feature encoding of the state at time step t+1.
 
-<img class=" size-full wp-image-221 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_30_43-icml17.png" alt="2017-05-30 00_30_43-icml17.png" width="357" height="86" />
+<img class=" size-full wp-image-221 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_30_43-icml17.png" alt="2017-05-30 00_30_43-icml17.png" />
 
 Here [latex]\hat\Phi(s_{t+1})[/latex] is the predicted estimate of [latex]\Phi(s_{t+1})[/latex] and the neural network parameters [latex]\theta _{F}[/latex] are optimized by optimizing the following loss function:
-<img class=" size-full wp-image-222 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_33_00-icml17.png" alt="2017-05-30 00_33_00-icml17.png" width="354" height="48" />
+<img class=" size-full wp-image-222 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/2017-05-30-00_33_00-icml17.png" alt="2017-05-30 00_33_00-icml17.png" />
 
 The intrinsic reward is computed as the product of $latex \eta$ and $latex L_{F}$. $latex \eta$ is a scaling factor. We jointly optimize the <strong>forward and inverse </strong><strong>dynamics loss</strong>.
 
@@ -83,14 +83,15 @@ Input state => four convolutional layers with 32 filters each, kernel size 3x3; 
 
 <strong>Forward model architecture: </strong>Feature vector concatenated with action $latex a_{t}$, passing it to a sequence of two fully connected layers with 256 & 288 units respectively.
 <h2>Results:</h2>
-<img class="alignnone size-full wp-image-230" src="https://quirkyai.files.wordpress.com/2017/05/result-1.png" alt="result 1.png" width="1223" height="364" />Rewards provided were made more sparse, which cause performance to deteriorate.
+<img class="alignnone size-full wp-image-230" src="https://quirkyai.files.wordpress.com/2017/05/result-1.png" alt="result 1.png" />
+Rewards provided were made more sparse, which cause performance to deteriorate.
 ICM (pixels) + A3C consistently performed worse than ICM + A3C because any change in texture style could render the method ineffective.
 
 <strong>Mario with no rewards:</strong>
 
 After training the algorithm on level 1, three methods of evaluating its robustness could be considered: Playing "as is" on the next levels, Fine tune the policies a bit,  Fine tune with extrinsic reward.
 
-<img class=" size-full wp-image-232 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/result-2.png" alt="result 2.png" width="1111" height="245" />
+<img class=" size-full wp-image-232 aligncenter" src="https://quirkyai.files.wordpress.com/2017/05/result-2.png" alt="result 2.png" />
 
 Running "as is" on level 2 after level 1 proved to be unsuccessful. This was because level 2 is visually very distinct from level 1 in terms  of lighting. Thus after a little bit of fine tuning,  Very promising results were seen.
 
