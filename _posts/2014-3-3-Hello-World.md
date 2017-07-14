@@ -45,7 +45,7 @@ Our first priority, after obviously the inputs is creating synapses. Synapses ca
 <blockquote>
 <p style="text-align: center;"><strong>Make sure you spend as much time as you need understanding this. Refer to the code simultaneously as well.</strong></p>
 </blockquote>
-<p style="text-align: center;"><img class="alignnone size-full wp-image-134" src="https://quirkyai.files.wordpress.com/2017/05/explanationtry2.jpg" alt="explanationtry2" width="2000" height="1500" /></p>
+<p style="text-align: center;"><img class="alignnone size-full wp-image-134" src="https://quirkyai.files.wordpress.com/2017/05/explanationtry2.jpg" alt="explanationtry2" width="1000" height="750" /></p>
 
 
 <hr />
