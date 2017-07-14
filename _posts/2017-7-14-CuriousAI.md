@@ -34,7 +34,7 @@ There were two subsystems:
 	<li>A reward generator: Outputs a curiosity-driven intrinsic reward signal, and  an extrinsic reward system.</li>
 	<li>A policy that outputs a sequence of actions to maximize that reward signal.</li>
 </ul>
-Intrinsic curiosity reward at time t: [latex]r_{t}^{i}[/latex], extrinsic reward: $latex r_{t}^{e}$.
+Intrinsic curiosity reward at time t: ![eqn]([latex]r_{t}^{i}[/latex]), extrinsic reward: $latex r_{t}^{e}$.
 Policy sub-system to maximize r = $latex r_{t}^{i}$ + $latex r_{t}^{e}$.
 
 The policy $latex \pi (s_{t};\Theta_{p})$ is represented by a DNN with parameters $latex \Theta_{p}$. At state $latex s_{t}$, it executes action $latex a_{t} ~ \pi (s_{t};\Theta_{p})$. $latex \Theta_{p}$ is optimized to maximize the expected sum of rewards.
